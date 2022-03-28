@@ -29,10 +29,16 @@ const Job = ({
   onAdd,
 }) => {
   const classes = useStyles();
+  const show = () => {
+    console.log([role, level, ...languages, ...tools].includes("HTML"));
+  };
   return (
     <ThemeProvider theme={theme}>
       <Card sx={{ boxShadow: "0px 13px 18px -11px hsl(180, 29%, 50%)" }}>
         <Box
+          onDoubleClick={() => {
+            show();
+          }}
           component="div"
           className={classes.jobBox}
           sx={
@@ -86,9 +92,10 @@ const Job = ({
                   {position}
                 </Typography>
               </Button>
-              <Box display="flex" alignItems="center">
+
+              <Box className={classes.infoCont}>
                 <Typography variant="body2"> {postedAt} </Typography>
-                <Typography variant="body2">{contract}</Typography>
+                <Typography variant="body2"> {contract} </Typography>
                 <Typography variant="body2"> {location} </Typography>
               </Box>
             </Stack>
@@ -97,11 +104,23 @@ const Job = ({
             <FilterButton val={role} onAdd={onAdd} />
             <FilterButton val={level} onAdd={onAdd} />
             {languages.map((l) => {
-              return <FilterButton val={l} onAdd={onAdd} />;
+              return (
+                <FilterButton
+                  key={Math.floor(Math.random() * 1000)}
+                  val={l}
+                  onAdd={onAdd}
+                />
+              );
             })}
 
             {tools.map((t) => {
-              return <FilterButton val={t} onAdd={onAdd} />;
+              return (
+                <FilterButton
+                  key={Math.floor(Math.random() * 1000)}
+                  val={t}
+                  onAdd={onAdd}
+                />
+              );
             })}
           </Stack>
         </Box>

@@ -6,6 +6,7 @@ import theme from "./styles";
 function App() {
   return (
     <ThemeProvider theme={theme}>
+      <header></header>
       <main className="app">
         <Container>
           <Core />

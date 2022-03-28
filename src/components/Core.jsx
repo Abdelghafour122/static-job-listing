@@ -33,7 +33,8 @@ const Core = () => {
   const [keyWords, setKeyWords] = useState([]);
 
   useEffect(() => {
-    console.log(keyWords);
+    // console.log(keyWords);
+    filterData(keyWords);
   }, [keyWords]);
 
   const addKeyWord = (val) => {
@@ -47,6 +48,17 @@ const Core = () => {
     });
     setKeyWords(updatedKeyWords);
   };
+
+  const filterData = (values) => {
+    const res = data.filter((d) => {
+      const keysArray = [d.role, d.level, ...d.tools, ...d.languages];
+      return values.every((v) => keysArray.includes(v));
+    });
+
+    console.log(res);
+    setRelData(res);
+  };
+
   return (
     <div className="core" style={{ margintop: "40px" }}>
       <Card
@@ -69,7 +81,7 @@ const Core = () => {
         </Stack>
       </Card>
       <Stack spacing={4} sx={{ marginTop: "30px" }}>
-        {data.map((d) => {
+        {relData.map((d) => {
           return (
             <Job
               key={d.id}

@@ -1,6 +1,5 @@
 import { Chip, ThemeProvider } from "@mui/material";
 import React from "react";
-// import ClearIcon from "@mui/icons-material/Clear";
 import { Clear } from "@mui/icons-material";
 import theme from "../styles";
 
@@ -11,6 +10,9 @@ const DeleteFilterButton = ({ text, onDelete }) => {
         sx={{
           borderRadius: "5px",
           overflow: "hidden",
+          color: "primary.main",
+          fontWeight: 700,
+          backgroundColor: "neutral.filterTablets",
         }}
         label={text}
         onDelete={() => {
