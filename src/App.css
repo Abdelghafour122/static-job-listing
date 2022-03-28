@@ -1,1 +1,19 @@
 @import url("https://fonts.googleapis.com/css2?family=Spartan:wght@500;700&display=swap");
+
+:root {
+  --filterTablets: hsl(180, 31%, 95%);
+  --dgCyan: hsl(180, 8%, 52%);
+  --vdgCyan: hsl(180, 14%, 20%);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+.app {
+  background-color: hsl(180, 52%, 96%);
+}

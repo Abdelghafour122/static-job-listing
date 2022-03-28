@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Avatar,
   Box,
@@ -10,6 +10,8 @@ import {
   ThemeProvider,
 } from "@mui/material";
 import theme from "../styles";
+import useStyles from "../customStyles";
+import FilterButton from "./FilterButton";
 
 const Job = ({
   company,
@@ -24,36 +26,66 @@ const Job = ({
   location,
   languages,
   tools,
+  onAdd,
 }) => {
+  const classes = useStyles();
   return (
     <ThemeProvider theme={theme}>
-      <Card>
+      <Card sx={{ boxShadow: "0px 13px 18px -11px hsl(180, 29%, 50%)" }}>
         <Box
           component="div"
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            p: "10px",
-          }}
+          className={classes.jobBox}
+          sx={
+            featured && {
+              borderLeft: "5px solid",
+              borderColor: "primary.main",
+            }
+          }
         >
           <Stack spacing={2} direction="row" alignItems="center">
-            <Avatar variant="circular" src={logo} />
+            <Avatar
+              variant="circular"
+              src={logo}
+              sx={{ height: "88px", width: "88px" }}
+            />
             <Stack spacing={1} direction="column" alignItems="flex-start">
               <Stack direction="row" spacing={2} alignItems="center">
-                <Typography fontWeight="700"> {company} </Typography>
+                <Typography
+                  fontWeight="700"
+                  variant="body2"
+                  sx={{ color: "primary.main" }}
+                >
+                  {company}
+                </Typography>
                 {neww && (
                   <Typography fontWeight="700">
-                    <Chip label="NEW!" />
+                    <Chip
+                      label="NEW!"
+                      size="small"
+                      sx={{ color: "white", bgcolor: "primary.main" }}
+                    />
                   </Typography>
                 )}
                 {featured && (
                   <Typography fontWeight="700">
-                    <Chip label="FEATURED" />
+                    <Chip
+                      size="small"
+                      label="FEATURED"
+                      sx={{ color: "white", bgcolor: "neutral.vdgCyan" }}
+                    />
                   </Typography>
                 )}
               </Stack>
-              <Typography variant="body1"> {position} </Typography>
+              <Button
+                disableElevation
+                disableRipple
+                variant="text"
+                sx={{ padding: "0" }}
+              >
+                <Typography variant="body1" className={classes.positionHead}>
+                  {position}
+                </Typography>
+              </Button>
               <Box display="flex" alignItems="center">
                 <Typography variant="body2"> {postedAt} </Typography>
                 <Typography variant="body2">{contract}</Typography>
@@ -61,15 +93,15 @@ const Job = ({
               </Box>
             </Stack>
           </Stack>
-          <Stack direction="row" spacing={3}>
-            <Button disableElevation>{role}</Button>
-            <Button disableElevation> {level} </Button>
+          <Stack direction="row" spacing={3} className={classes.buttonStack}>
+            <FilterButton val={role} onAdd={onAdd} />
+            <FilterButton val={level} onAdd={onAdd} />
             {languages.map((l) => {
-              return <Button disableElevation> {l} </Button>;
+              return <FilterButton val={l} onAdd={onAdd} />;
             })}
 
             {tools.map((t) => {
-              return <Button disableElevation> {t} </Button>;
+              return <FilterButton val={t} onAdd={onAdd} />;
             })}
           </Stack>
         </Box>

@@ -1,0 +1,1 @@
+when you click the filter card and add it in the high input field, use the animation tags

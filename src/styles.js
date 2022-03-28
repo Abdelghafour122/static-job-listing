@@ -1,7 +1,17 @@
 import { createTheme } from "@mui/material/styles";
 
 const theme = createTheme({
-  palette: {},
+  palette: {
+    primary: {
+      main: "hsl(180, 29%, 50%)",
+    },
+    neutral: {
+      buttBgc: "#effafa",
+      filterTablets: "#eef6f6",
+      dgCyan: "#7b8e8e",
+      vdgCyan: "#2c3a3a",
+    },
+  },
   typography: {
     fontFamily: "Spartan",
     body1: {

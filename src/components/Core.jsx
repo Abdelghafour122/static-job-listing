@@ -1,5 +1,5 @@
-import React from "react";
-import { Stack } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { Card, Stack } from "@mui/material";
 import Job from "./Job";
 import data from "../data.json";
 
@@ -13,6 +13,7 @@ import myhome from "../images/myhome.svg";
 import photosnap from "../images/photosnap.svg";
 import shortly from "../images/shortly.svg";
 import airFilterComp from "../images/the-air-filter-company.svg";
+import DeleteFilterButton from "./DeleteFilterButton";
 
 const imgArr = Array.of(
   photosnap,
@@ -28,9 +29,46 @@ const imgArr = Array.of(
 );
 
 const Core = () => {
+  const [relData, setRelData] = useState(data);
+  const [keyWords, setKeyWords] = useState([]);
+
+  useEffect(() => {
+    console.log(keyWords);
+  }, [keyWords]);
+
+  const addKeyWord = (val) => {
+    !keyWords.includes(val) && setKeyWords([...keyWords, val]);
+  };
+
+  const onDelete = (text) => {
+    console.log(keyWords);
+    const updatedKeyWords = keyWords.filter((keyWord) => {
+      return keyWord !== text;
+    });
+    setKeyWords(updatedKeyWords);
+  };
   return (
-    <div className="core">
-      <Stack spacing={4}>
+    <div className="core" style={{ margintop: "40px" }}>
+      <Card
+        sx={
+          !keyWords.length
+            ? {
+                visibility: "hidden",
+                boxShadow: "0px 13px 18px -11px hsl(180, 29%, 50%)",
+              }
+            : {
+                visibility: "visible",
+                boxShadow: "0px 13px 18px -11px hsl(180, 29%, 50%)",
+              }
+        }
+      >
+        <Stack spacing={3} direction="row" flexWrap="wrap" p="20px">
+          {keyWords.map((keyWord) => {
+            return <DeleteFilterButton text={keyWord} onDelete={onDelete} />;
+          })}
+        </Stack>
+      </Card>
+      <Stack spacing={4} sx={{ marginTop: "30px" }}>
         {data.map((d) => {
           return (
             <Job
@@ -47,6 +85,7 @@ const Core = () => {
               location={d.location}
               languages={d.languages}
               tools={d.tools}
+              onAdd={addKeyWord}
             />
           );
         })}
