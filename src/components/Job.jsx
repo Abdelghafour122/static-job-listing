@@ -49,6 +49,7 @@ const Job = ({
             <Avatar
               variant="circular"
               src={logo}
+              alt={company}
               sx={{ height: "88px", width: "88px" }}
             />
             <Stack spacing={1} direction="column" alignItems="flex-start">
