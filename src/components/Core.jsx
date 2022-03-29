@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Card, Stack } from "@mui/material";
+import { Card, Collapse, Fade, Stack } from "@mui/material";
 import Job from "./Job";
 import data from "../data.json";
+import { TransitionGroup } from "react-transition-group";
+import useStyles from "../customStyles";
 
 import account from "../images/account.svg";
 import eyecamCo from "../images/eyecam-co.svg";
@@ -31,9 +33,9 @@ const imgArr = Array.of(
 const Core = () => {
   const [relData, setRelData] = useState(data);
   const [keyWords, setKeyWords] = useState([]);
+  const classes = useStyles();
 
   useEffect(() => {
-    // console.log(keyWords);
     filterData(keyWords);
   }, [keyWords]);
 
@@ -54,8 +56,6 @@ const Core = () => {
       const keysArray = [d.role, d.level, ...d.tools, ...d.languages];
       return values.every((v) => keysArray.includes(v));
     });
-
-    console.log(res);
     setRelData(res);
   };
 
@@ -74,33 +74,47 @@ const Core = () => {
               }
         }
       >
-        <Stack spacing={3} direction="row" flexWrap="wrap" p="20px">
-          {keyWords.map((keyWord) => {
-            return <DeleteFilterButton text={keyWord} onDelete={onDelete} />;
-          })}
+        <Stack
+          sx={{ gap: { xs: "20px" } }}
+          direction="row"
+          flexWrap="wrap"
+          p="20px"
+        >
+          <TransitionGroup className={classes.buttonStack}>
+            {keyWords.map((keyWord) => {
+              return (
+                <Collapse orientation="horizontal">
+                  <DeleteFilterButton text={keyWord} onDelete={onDelete} />
+                </Collapse>
+              );
+            })}
+          </TransitionGroup>
         </Stack>
       </Card>
-      <Stack spacing={4} sx={{ marginTop: "30px" }}>
-        {relData.map((d) => {
-          return (
-            <Job
-              key={d.id}
-              company={d.company}
-              logo={imgArr[d.id - 1]}
-              neww={d.new}
-              featured={d.featured}
-              position={d.position}
-              role={d.role}
-              level={d.level}
-              postedAt={d.postedAt}
-              contract={d.contract}
-              location={d.location}
-              languages={d.languages}
-              tools={d.tools}
-              onAdd={addKeyWord}
-            />
-          );
-        })}
+      <Stack sx={{ marginTop: "30px" }}>
+        <TransitionGroup>
+          {relData.map((d) => {
+            return (
+              <Collapse key={d.id}>
+                <Job
+                  company={d.company}
+                  logo={imgArr[d.id - 1]}
+                  neww={d.new}
+                  featured={d.featured}
+                  position={d.position}
+                  role={d.role}
+                  level={d.level}
+                  postedAt={d.postedAt}
+                  contract={d.contract}
+                  location={d.location}
+                  languages={d.languages}
+                  tools={d.tools}
+                  onAdd={addKeyWord}
+                />
+              </Collapse>
+            );
+          })}
+        </TransitionGroup>
       </Stack>
     </div>
   );

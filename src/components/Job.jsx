@@ -8,6 +8,7 @@ import {
   Stack,
   Typography,
   ThemeProvider,
+  Divider,
 } from "@mui/material";
 import theme from "../styles";
 import useStyles from "../customStyles";
@@ -29,16 +30,12 @@ const Job = ({
   onAdd,
 }) => {
   const classes = useStyles();
-  const show = () => {
-    console.log([role, level, ...languages, ...tools].includes("HTML"));
-  };
   return (
     <ThemeProvider theme={theme}>
-      <Card sx={{ boxShadow: "0px 13px 18px -11px hsl(180, 29%, 50%)" }}>
+      <Card
+        sx={{ boxShadow: "0px 13px 18px -11px hsl(180, 29%, 50%)", mb: "35px" }}
+      >
         <Box
-          onDoubleClick={() => {
-            show();
-          }}
           component="div"
           className={classes.jobBox}
           sx={
@@ -100,7 +97,12 @@ const Job = ({
               </Box>
             </Stack>
           </Stack>
-          <Stack direction="row" spacing={3} className={classes.buttonStack}>
+          <Divider variant="fullWidth" flexItem sx={{ margin: "20px 0" }} />
+          <Stack
+            direction="row"
+            spacing={{ xs: 0, sm: 0, md: 1, lg: 3, xl: 3 }}
+            className={classes.buttonStack}
+          >
             <FilterButton val={role} onAdd={onAdd} />
             <FilterButton val={level} onAdd={onAdd} />
             {languages.map((l) => {

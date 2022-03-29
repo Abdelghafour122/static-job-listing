@@ -13,6 +13,7 @@ const DeleteFilterButton = ({ text, onDelete }) => {
           color: "primary.main",
           fontWeight: 700,
           backgroundColor: "neutral.filterTablets",
+          mr: "20px",
         }}
         label={text}
         onDelete={() => {

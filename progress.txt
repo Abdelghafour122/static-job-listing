@@ -1,1 +1,2 @@
-when you click the filter card and add it in the high input field, use the animation tags
+when keywords are added, use use transitions
+read more about transitions, it's simple

@@ -7,8 +7,10 @@ const useStyles = makeStyles({
     alignItems: "center",
     justifyContent: "space-between",
     padding: "30px",
-    [theme.breakpoints.down("sm")]: {
+    [theme.breakpoints.down("md")]: {
       flexDirection: " column",
+      alignItems: "flex-start",
+      padding: "15px",
     },
   },
   positionHead: {
@@ -42,6 +44,14 @@ const useStyles = makeStyles({
         borderRadius: "50%",
         backgroundColor: "grey",
       },
+    },
+  },
+  buttonStack: {
+    display: "flex",
+    alignItems: "center",
+    [theme.breakpoints.down("md")]: {
+      flexWrap: "wrap",
+      gap: "20px",
     },
   },
 });
