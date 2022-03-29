@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Card, Collapse, Fade, Stack } from "@mui/material";
+import { Card, Collapse, Stack } from "@mui/material";
 import Job from "./Job";
 import data from "../data.json";
 import { TransitionGroup } from "react-transition-group";
@@ -17,7 +17,7 @@ import shortly from "../images/shortly.svg";
 import airFilterComp from "../images/the-air-filter-company.svg";
 import DeleteFilterButton from "./DeleteFilterButton";
 
-const imgArr = Array.of(
+const IMGARRAY = Array.of(
   photosnap,
   manage,
   account,
@@ -44,7 +44,6 @@ const Core = () => {
   };
 
   const onDelete = (text) => {
-    console.log(keyWords);
     const updatedKeyWords = keyWords.filter((keyWord) => {
       return keyWord !== text;
     });
@@ -98,7 +97,7 @@ const Core = () => {
               <Collapse key={d.id}>
                 <Job
                   company={d.company}
-                  logo={imgArr[d.id - 1]}
+                  logo={IMGARRAY[d.id - 1]}
                   neww={d.new}
                   featured={d.featured}
                   position={d.position}
