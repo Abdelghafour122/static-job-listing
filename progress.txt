@@ -1,2 +1,0 @@
-when keywords are added, use use transitions
-read more about transitions, it's simple
