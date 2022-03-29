@@ -8,6 +8,7 @@ const FilterButton = ({ val, onAdd }) => {
     <Button
       disableElevation
       className={classes.filterButton}
+      variant="text"
       onClick={() => {
         onAdd(val);
       }}
