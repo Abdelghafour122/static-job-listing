@@ -85,10 +85,9 @@ const Job = ({
                 disableRipple
                 variant="text"
                 sx={{ padding: "0" }}
+                className={classes.positionHead}
               >
-                <Typography variant="body1" className={classes.positionHead}>
-                  {position}
-                </Typography>
+                {position}
               </Button>
 
               <Box className={classes.infoCont}>

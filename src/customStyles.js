@@ -16,6 +16,7 @@ const useStyles = makeStyles({
   positionHead: {
     color: "#2c3a3a",
     transition: "0.3s",
+    fontSize: "17px",
     "&:hover": {
       color: "hsl(180, 29%, 50%)",
     },
